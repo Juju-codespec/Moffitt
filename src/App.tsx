@@ -381,19 +381,21 @@ function parseGeoJson(text: string): UploadedRow[] {
 
   if (parsed.type !== 'FeatureCollection' || !Array.isArray(parsed.features)) return [];
 
-  return parsed.features
-    .map((feature, index) => {
-      const coordinates = feature.geometry?.coordinates;
-      if (!Array.isArray(coordinates) || coordinates.length < 2) return null;
+  const rows: UploadedRow[] = [];
 
-      return {
-        id: `feature-${index}`,
-        x: Number(coordinates[0]),
-        y: Number(coordinates[1]),
-        ...(feature.properties ?? {}),
-      };
-    })
-    .filter((row): row is UploadedRow => Boolean(row));
+  parsed.features.forEach((feature, index) => {
+    const coordinates = feature.geometry?.coordinates;
+    if (!Array.isArray(coordinates) || coordinates.length < 2) return;
+
+    rows.push({
+      id: `feature-${index}`,
+      x: Number(coordinates[0]),
+      y: Number(coordinates[1]),
+      ...(feature.properties ?? {}),
+    });
+  });
+
+  return rows;
 }
 
 function detectColumn(columns: string[], candidates: string[]) {
