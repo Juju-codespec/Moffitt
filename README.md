@@ -79,3 +79,29 @@ This app does **not** include UWorld questions or copyrighted content. It teache
 - `npm run dev` — development server
 - `npm run build` / `npm start` — production
 - `npm run lint` — ESLint
+
+## Troubleshooting
+
+### `bash: ollama: command not found`
+
+**On Mac or Windows (your laptop):** Install the desktop app from [ollama.com](https://ollama.com/download), open it, then use **Terminal on your Mac/PC** (not a remote cloud shell). The app adds `ollama` to your PATH after you open it once.
+
+**On Linux (e.g. Cursor cloud workspace):** Install the CLI:
+
+```bash
+sudo apt-get install -y zstd   # Ubuntu/Debian, if needed
+curl -fsSL https://ollama.com/install.sh | sh
+ollama serve                   # keep this running in a terminal tab
+ollama pull llama3.2
+```
+
+Then in another terminal: `npm run dev` and open http://localhost:3000.
+
+Verify anytime:
+
+```bash
+npm run check:ollama
+```
+
+**Important:** Moffitt talks to Ollama at `http://127.0.0.1:11434` on the **same machine** where `npm run dev` runs. If the website runs in a cloud VM, Ollama must be installed in that VM—not only on your laptop.
+
