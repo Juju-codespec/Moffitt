@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Section, SectionId } from "@/lib/sections";
 
 interface Message {
@@ -12,9 +12,17 @@ interface TutorChatProps {
   section: Section;
   topicId: string | null;
   starterPrompts: string[];
+  autoSendPrompt?: string | null;
+  onAutoSendComplete?: () => void;
 }
 
-export function TutorChat({ section, topicId, starterPrompts }: TutorChatProps) {
+export function TutorChat({
+  section,
+  topicId,
+  starterPrompts,
+  autoSendPrompt,
+  onAutoSendComplete,
+}: TutorChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -91,6 +99,14 @@ export function TutorChat({ section, topicId, starterPrompts }: TutorChatProps) 
     },
     [loading, messages, section.id, topicId, scrollToBottom]
   );
+
+  const lastAutoSend = useRef<string | null>(null);
+  useEffect(() => {
+    if (!autoSendPrompt || autoSendPrompt === lastAutoSend.current) return;
+    lastAutoSend.current = autoSendPrompt;
+    send(autoSendPrompt);
+    onAutoSendComplete?.();
+  }, [autoSendPrompt, send, onAutoSendComplete]);
 
   return (
     <div className="flex h-full min-h-[420px] flex-col rounded-2xl border border-surface-border bg-surface-raised">

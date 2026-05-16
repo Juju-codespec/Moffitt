@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import type { Section } from "@/lib/sections";
+import { buildPreQbankBriefingPrompt } from "@/lib/prompts";
 import { TutorChat } from "@/components/TutorChat";
 
 const accentText: Record<Section["color"], string> = {
@@ -23,8 +24,15 @@ export function SectionWorkspace({ section }: { section: Section }) {
   const [topicId, setTopicId] = useState<string | null>(
     section.topics[0]?.id ?? null
   );
+  const [briefingRequest, setBriefingRequest] = useState<string | null>(null);
 
   const activeTopic = section.topics.find((t) => t.id === topicId);
+
+  const requestBriefing = useCallback(() => {
+    if (!topicId) return;
+    const prompt = buildPreQbankBriefingPrompt(section, topicId);
+    if (prompt) setBriefingRequest(prompt);
+  }, [section, topicId]);
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-8">
@@ -75,6 +83,16 @@ export function SectionWorkspace({ section }: { section: Section }) {
           </ul>
 
           {activeTopic && (
+            <button
+              type="button"
+              onClick={requestBriefing}
+              className={`w-full rounded-xl border bg-surface-raised px-4 py-3 text-sm font-medium text-white transition hover:bg-surface ${accentRing[section.color]}`}
+            >
+              Start Pre-QBank briefing
+            </button>
+          )}
+
+          {activeTopic && (
             <div className="rounded-xl border border-surface-border bg-surface p-4">
               <h3 className="mb-2 text-xs font-medium uppercase text-slate-500">
                 QBank readiness
@@ -102,6 +120,8 @@ export function SectionWorkspace({ section }: { section: Section }) {
             section={section}
             topicId={topicId}
             starterPrompts={section.starterPrompts}
+            autoSendPrompt={briefingRequest}
+            onAutoSendComplete={() => setBriefingRequest(null)}
           />
         </div>
       </div>

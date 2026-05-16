@@ -58,3 +58,29 @@ QBank readiness checklist:
 ${skills}
 `;
 }
+
+/** Structured lesson prompt for the active topic before QBank. */
+export function buildPreQbankBriefingPrompt(
+  section: Section,
+  topicId: string
+): string | null {
+  const topic = section.topics.find((t) => t.id === topicId);
+  if (!topic) return null;
+
+  const skills = topic.qbankReadiness.map((s) => `- ${s}`).join("\n");
+
+  return `Run a Pre-QBank briefing for "${topic.title}" in ${section.uworldLabel}.
+
+Structure your response exactly like this:
+1. **Core idea** (2–3 sentences, plain language)
+2. **Must-know for MCAT** (3–5 bullets)
+3. **How UWorld tests this** (common trap types, no copyrighted text)
+4. **Mini walkthrough** (one short example or scenario)
+5. **Self-check** (3 questions I should answer without notes)
+6. **Before QBank** (one specific 15-minute drill)
+
+Topic context: ${topic.summary}
+
+I should be able to do these before opening QBank:
+${skills}`;
+}
