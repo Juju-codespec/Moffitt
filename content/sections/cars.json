@@ -1,0 +1,44 @@
+{
+  "section": { "slug": "cars", "name": "CARS", "sort_order": 1 },
+  "topics": [
+    {
+      "slug": "humanities",
+      "name": "Humanities Passages",
+      "sort_order": 0,
+      "metadata": {
+        "passage_archetypes": ["Art criticism", "Philosophy excerpts", "Literary analysis"],
+        "trap_patterns": ["Out-of-scope inferences", "Extreme answer choices"],
+        "reasoning_patterns": ["Author's claim vs evidence distinction"]
+      },
+      "subtopics": [
+        { "name": "Tone & attitude", "high_yield": true },
+        { "name": "Main idea", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "social-sciences",
+      "name": "Social Sciences Passages",
+      "sort_order": 1,
+      "metadata": {
+        "passage_archetypes": ["Policy arguments", "Historical analysis"],
+        "reasoning_patterns": ["Structure mapping: claim → support → qualification"]
+      },
+      "subtopics": [
+        { "name": "Inference questions", "high_yield": true },
+        { "name": "Strengthen/weaken", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "timing-strategy",
+      "name": "Timing & Strategy",
+      "sort_order": 2,
+      "metadata": {
+        "reasoning_patterns": ["10 min passage budget", "Flag and return protocol"]
+      },
+      "subtopics": [
+        { "name": "Passage pacing", "high_yield": true },
+        { "name": "Question triage", "high_yield": true }
+      ]
+    }
+  ]
+}

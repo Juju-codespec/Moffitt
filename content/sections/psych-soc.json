@@ -1,0 +1,55 @@
+{
+  "section": { "slug": "psych-soc", "name": "Psych/Soc", "sort_order": 3 },
+  "topics": [
+    {
+      "slug": "learning-memory",
+      "name": "Learning & Memory",
+      "sort_order": 0,
+      "metadata": {
+        "trap_patterns": ["Confusing classical vs operant conditioning examples"],
+        "reasoning_patterns": ["Identify UCS/UCR/CS/CR in scenarios"]
+      },
+      "subtopics": [
+        { "name": "Conditioning", "high_yield": true },
+        { "name": "Memory systems", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "social-psych",
+      "name": "Social Psychology",
+      "sort_order": 1,
+      "metadata": {
+        "reasoning_patterns": ["Attribution theory application"]
+      },
+      "subtopics": [
+        { "name": "Attribution & conformity", "high_yield": true },
+        { "name": "Group behavior", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "research-methods",
+      "name": "Research Methods",
+      "sort_order": 2,
+      "metadata": {
+        "trap_patterns": ["Correlation vs causation overreach"],
+        "reasoning_patterns": ["Identify IV/DV and confounds"]
+      },
+      "subtopics": [
+        { "name": "Study design", "high_yield": true },
+        { "name": "Statistics basics", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "demographics",
+      "name": "Demographics & Health Disparities",
+      "sort_order": 3,
+      "metadata": {
+        "reasoning_patterns": ["Social determinants framework"]
+      },
+      "subtopics": [
+        { "name": "SES & health", "high_yield": true },
+        { "name": "Culture & identity", "high_yield": true }
+      ]
+    }
+  ]
+}

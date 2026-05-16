@@ -1,0 +1,56 @@
+{
+  "section": { "slug": "bio-biochem", "name": "Bio/Biochem", "sort_order": 2 },
+  "topics": [
+    {
+      "slug": "enzymes",
+      "name": "Enzymes",
+      "sort_order": 0,
+      "metadata": {
+        "trap_patterns": ["Confusing competitive vs noncompetitive inhibition graphs"],
+        "reasoning_patterns": ["Lineweaver-Burk interpretation"]
+      },
+      "subtopics": [
+        { "name": "Kinetics", "high_yield": true },
+        { "name": "Inhibition", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "metabolism",
+      "name": "Metabolism",
+      "sort_order": 1,
+      "metadata": {
+        "equations": ["ΔG and pathway coupling"],
+        "reasoning_patterns": ["Regulatory enzymes as control points"]
+      },
+      "subtopics": [
+        { "name": "Glycolysis & gluconeogenesis", "high_yield": true },
+        { "name": "TCA & ETC", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "amino-acids",
+      "name": "Amino Acids & Proteins",
+      "sort_order": 2,
+      "metadata": {
+        "trap_patterns": ["Missing pI logic at given pH"],
+        "reasoning_patterns": ["R-group chemistry drives behavior"]
+      },
+      "subtopics": [
+        { "name": "Structure levels", "high_yield": true },
+        { "name": "pI & electrophoresis", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "genetics",
+      "name": "Genetics",
+      "sort_order": 3,
+      "metadata": {
+        "reasoning_patterns": ["Pedigree probability trees"]
+      },
+      "subtopics": [
+        { "name": "Mendelian inheritance", "high_yield": true },
+        { "name": "Gene expression", "high_yield": true }
+      ]
+    }
+  ]
+}

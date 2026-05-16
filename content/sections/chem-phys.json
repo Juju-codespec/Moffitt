@@ -1,0 +1,92 @@
+{
+  "section": { "slug": "chem-phys", "name": "Chem/Phys", "sort_order": 0 },
+  "topics": [
+    {
+      "slug": "fluids",
+      "name": "Fluids",
+      "sort_order": 0,
+      "metadata": {
+        "equations": ["P = ρgh", "Q = Av", "Bernoulli: P + ½ρv² + ρgh = constant"],
+        "trap_patterns": ["Confusing gauge vs absolute pressure", "Ignoring continuity equation"],
+        "reasoning_patterns": ["Identify whether density or height drives pressure change"]
+      },
+      "subtopics": [
+        { "name": "Hydrostatic pressure", "high_yield": true },
+        { "name": "Continuity & Bernoulli", "high_yield": true },
+        { "name": "Buoyancy", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "circuits",
+      "name": "Circuits",
+      "sort_order": 1,
+      "metadata": {
+        "equations": ["V = IR", "P = IV", "Req series/parallel"],
+        "trap_patterns": ["Treating capacitors like resistors in DC steady state"],
+        "reasoning_patterns": ["Redraw circuit; label nodes"]
+      },
+      "subtopics": [
+        { "name": "Ohm's law & power", "high_yield": true },
+        { "name": "Kirchhoff rules", "high_yield": true },
+        { "name": "RC circuits", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "optics",
+      "name": "Optics",
+      "sort_order": 2,
+      "metadata": {
+        "equations": ["n1 sin θ1 = n2 sin θ2", "1/f = 1/do + 1/di"],
+        "trap_patterns": ["Sign conventions for mirrors vs lenses"],
+        "reasoning_patterns": ["Ray tracing for image type"]
+      },
+      "subtopics": [
+        { "name": "Reflection & refraction", "high_yield": true },
+        { "name": "Lenses & mirrors", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "acid-base",
+      "name": "Acid/Base",
+      "sort_order": 3,
+      "metadata": {
+        "equations": ["pH = -log[H+]", "Henderson-Hasselbalch"],
+        "trap_patterns": ["Weak acid strong base equivalence ≠ pH 7"],
+        "reasoning_patterns": ["Identify species after reaction before Henderson"]
+      },
+      "subtopics": [
+        { "name": "Strong vs weak acids", "high_yield": true },
+        { "name": "Buffers", "high_yield": true },
+        { "name": "Titrations", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "thermodynamics",
+      "name": "Thermodynamics",
+      "sort_order": 4,
+      "metadata": {
+        "equations": ["ΔG = ΔH - TΔS", "q = mcΔT"],
+        "trap_patterns": ["Confusing ΔG° and ΔG with non-standard conditions"],
+        "reasoning_patterns": ["Spontaneity from signs of ΔH, ΔS, T"]
+      },
+      "subtopics": [
+        { "name": "First law", "high_yield": true },
+        { "name": "Entropy & Gibbs", "high_yield": true }
+      ]
+    },
+    {
+      "slug": "electrochemistry",
+      "name": "Electrochemistry",
+      "sort_order": 5,
+      "metadata": {
+        "equations": ["E°cell = E°cathode - E°anode", "ΔG° = -nFE°"],
+        "trap_patterns": ["Reversing anode/cathode in galvanic cells"],
+        "reasoning_patterns": ["Oxidation at anode; compare E° values"]
+      },
+      "subtopics": [
+        { "name": "Galvanic cells", "high_yield": true },
+        { "name": "Electrolysis", "high_yield": false }
+      ]
+    }
+  ]
+}
