@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0e14;
+  --foreground: #e8edf4;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100vh;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Subtle grid background */
+.bg-grid {
+  background-image: linear-gradient(
+      rgba(45, 58, 79, 0.35) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(45, 58, 79, 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
