@@ -131,11 +131,15 @@ async function streamOpenAI(
   }
 }
 
-export async function checkLlmHealth(): Promise<{
+export type LlmHealth = {
   provider: LlmProvider;
   ok: boolean;
   detail: string;
-}> {
+  models?: string[];
+  configuredModel?: string;
+};
+
+export async function checkLlmHealth(): Promise<LlmHealth> {
   const provider = getProvider();
   try {
     if (provider === "ollama") {
@@ -152,12 +156,25 @@ export async function checkLlmHealth(): Promise<{
       const hasModel = names.some(
         (n) => n === model || n.startsWith(`${model}:`)
       );
+      if (!hasModel) {
+        const hint =
+          names.length > 0
+            ? `Installed: ${names.slice(0, 3).join(", ")}. Set OLLAMA_MODEL in .env or run: ollama pull ${model}`
+            : `Run: ollama pull ${model}`;
+        return {
+          provider,
+          ok: false,
+          detail: `Model "${model}" not found. ${hint}`,
+          models: names,
+          configuredModel: model,
+        };
+      }
       return {
         provider,
         ok: true,
-        detail: hasModel
-          ? `Ollama ready (${model})`
-          : `Ollama running but model "${model}" not found. Run: ollama pull ${model}`,
+        detail: `Ollama ready (${model})`,
+        models: names,
+        configuredModel: model,
       };
     }
     if (!process.env.OPENAI_API_KEY) {
@@ -171,7 +188,22 @@ export async function checkLlmHealth(): Promise<{
       detail:
         e instanceof Error
           ? e.message
-          : "Cannot reach LLM. Start Ollama with: ollama serve",
+          : "Cannot reach Ollama. Open the Ollama app or run: ollama serve",
     };
+  }
+}
+
+/** List models Ollama has pulled (empty if Ollama is offline). */
+export async function listOllamaModels(): Promise<string[]> {
+  const base = process.env.OLLAMA_BASE_URL ?? "http://127.0.0.1:11434";
+  try {
+    const res = await fetch(`${base}/api/tags`, {
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!res.ok) return [];
+    const data = (await res.json()) as { models?: { name: string }[] };
+    return data.models?.map((m) => m.name) ?? [];
+  } catch {
+    return [];
   }
 }

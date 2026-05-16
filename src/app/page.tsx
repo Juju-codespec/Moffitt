@@ -1,4 +1,5 @@
 import { HealthBadge } from "@/components/HealthBadge";
+import { OllamaSetup } from "@/components/OllamaSetup";
 import { SectionCard } from "@/components/SectionCard";
 import { SECTION_LIST } from "@/lib/sections";
 
@@ -30,6 +31,8 @@ export default function HomePage() {
             via Ollama.
           </p>
         </section>
+
+        <OllamaSetup />
 
         <div className="grid gap-5 sm:grid-cols-2">
           {SECTION_LIST.map((section) => (
